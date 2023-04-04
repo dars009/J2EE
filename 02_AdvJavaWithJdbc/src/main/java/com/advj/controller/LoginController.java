@@ -32,35 +32,28 @@ public class LoginController extends HttpServlet {
 		// step 2 : process data
 
 		// Write select query for check user is present or not
-
 		try {
 			Connection con = DBUtil.getMySQLConnection();
-			PreparedStatement ps = con
-					.prepareStatement("Select * FROM login where email = ? AND password = ? ;");
+			PreparedStatement ps = con.prepareStatement("Select * FROM login where email = ? AND password = ? ;");
 			ps.setString(1, email);
 			ps.setString(2, pass);
 			ResultSet rs = ps.executeQuery();
-			
-			
-			System.out.println(rs);
-			System.out.println("Query executed");
+			RequestDispatcher rd = null;
+
+			// step 3 : navigate data
+			if (rs.next()) {
+				System.out.println("User found !");
+				response.sendRedirect("dashboard.jsp");
+			} else {
+				System.out.println("User not found !");
+				request.setAttribute("errormessage", "Invalid Email and Password");
+				rd = request.getRequestDispatcher("index.jsp");
+				rd.forward(request, response);
+			}
 			con.close();
 		} catch (Exception e) {
 			System.out.println("Error while execute query");
 		}
-
-		RequestDispatcher rd = null;
-		if (email.equals(pass)) {
-			System.out.println("Login success go to dashboard");
-			response.sendRedirect("dashboard.jsp");
-		} else {
-			request.setAttribute("errormessage", "Invalid Email and Password");
-			rd = request.getRequestDispatcher("index.jsp");
-			System.out.println("send error to login page it self ");
-			rd.forward(request, response);
-		}
-
-		// step 3 : navigate data
 
 	}
 
