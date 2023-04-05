@@ -44,12 +44,19 @@ Create **index.jsp** file > inside **webapp**(Right click > new > file >(File na
 <br> Write code like 
 ```bash
 <form action="LoginController" method="post">
-		Email : <input type="email" name="email" />
-		<br>
-		Password : <input type="password" name="password" />
-		<br>
-		<input type="submit" value="Login">
-	</form>
+	Email : <input type="email" name="email" />
+	<br>
+	Password : <input type="password" name="password" />
+	<br>
+	<input type="submit" value="Login">
+</form>
 ```
+## jsp to java connectivity
 
+Create New Java Class with proper name for eg LoginController > inside proper package for eg com.test.controller > extend it with HttpServlet class and add class level annotation call 
+```bash
+@WebServlet("/LoginController")
+public class LoginController extends HttpServlet
+```
+Override doPost Method
 
