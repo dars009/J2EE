@@ -51,7 +51,7 @@ Create **index.jsp** file > inside **webapp**(Right click > new > file >(File na
 	<input type="submit" value="Login">
 </form>
 ```
-## jsp to java connectivity
+## JSP to JAVA (Controller) Connectivity
 
 Create New Java Class with proper name for eg LoginController > inside proper package for eg com.test.controller > extend it with HttpServlet class and add class level annotation call 
 ```bash
@@ -59,4 +59,40 @@ Create New Java Class with proper name for eg LoginController > inside proper pa
 public class LoginController extends HttpServlet
 ```
 Override doPost Method
+
+## Introduction
+J2EE stands for Java 2 Platform, Enterprise Edition. J2EE is the standard platform for developing applications in the enterprise and is designed for enterprise applications that run on servers. J2EE provides APIs that let developers create workflows and make use of resources such as databases or web services. J2EE consists of a set of APIs. Developers can use these APIs to build applications for business computing.
+
+<br>• A J2EE application server is software that runs applications built with J2EE APIs and lets you run multiple applications on a single computer. Developers can use different J2EE application servers to run applications built with J2EE APIs.
+
+![2023-04-08_21h18_47](https://user-images.githubusercontent.com/22477406/230730667-8d5a365f-e14a-4c88-a25b-ca443187886e.png)
+
+Multi-tier Architecture of Enterprise Java
+
+## Benefits of J2EE
+Below is the list of benefits that J2EE provides:
+
+<br>• Portability: If you build a J2EE application on a specific platform, it runs the same way on any other J2EE-compliant platform. This makes it easy to move applications from one environment to another. For example, moving an application from one computer to another or relocating an application from a test server to a production server.
+
+<br>• Reusability: The components in J2EE are reused, so the average size of an application is much smaller than it would be if you had to write equivalent functionality from scratch for each program. For example, one component lets you read objects from a database. You can use that object-reading feature in any J2EE application. Since this functionality is already written and tested, you don’t have to write it yourself every time you need it.
+
+<br>• Security: Java technology lets programmers handle sensitive data far more securely than they can in C/C++ programs.
+
+<br>• Scalability: J2EE lets developers build applications that run well on both small, single-processor computers and large, multi-processor systems.
+
+<br>• Reliability: Many of the services (such as transaction management and monitoring) that applications need to be reliable are built into J2EE.
+
+## What are the limitations of J2EE?
+
+Below are some of the limitations of J2EE:
+
+<br>• J2EE doesn’t provide any database access services. 
+You can use the J2EE component “Enterprise JavaBean” to send queries to an SQL database, but you need another kind of software, a Java Database Connectivity (JDBC) driver, to send the actual queries. 
+For example, to access an Oracle database, you need the Oracle JDBC driver, and to access a MySQL database, you need the MySQL connector/J driver.
+
+<br>• You cannot build desktop applications using J2EE APIs; they only run in application servers and communicate with backend J2EE services (application servers).
+<br>• Application servers often require separate licenses and must be purchased separately.
+<br>• J2EE or Java EE is currently known as Jakarta EE, which is its new implementation run as part of the Eclipse Enterprise for Java (EE4J) project. 
+<br>• Eclipse Enterprise for Java (EE4J) is the project that now hosts all Java Enterprise technologies. 
+<br>• With the move to EE4J, the J2EE / Java EE platform is taking a big step forward by adopting an open governance model that will allow it to be more tightly integrated with other major open-source projects.
 
