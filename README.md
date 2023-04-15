@@ -101,23 +101,51 @@ In general, the term “Session” in computing language, refers to a period of 
 <br>● To invalidate the session etc.
 <br>● **Creating a Session**
 <br>● Once the user login to the website, we need to create a new session. To do this, we need to use getSession() method in HttpServletRequest Interface.
-<br>● 1) HttpSession getSession():
+<br>● **1) HttpSession getSession():**
 ```bash
 HttpSession session = request.getSession();
 ```
 <br>● This method returns the current session associated with this request. 
 <br>● If the request does not have a session, it creates one. We can also create a session using  getSession(boolean create) method in HttpServletRequest Interface.
-<br>● 2) HttpSession getSession(boolean create):
+<br>● **2) HttpSession getSession(boolean create):**
 We can pass the boolean parameters – true or false. getSession(true):
 ```bash
 HttpSession session = request.getSession(true);
 ```
-<br>● 3) void invalidate():
-<br>● Once the user requests to logout, we need to destroy that session. To do this, we need to use invalidate() method in HttpSession Interface.
+<br>● **3) void invalidate():**
+<br>● Once the user requests to logout, we need to destroy that session. 
+<br>● To do this, we need to use invalidate() method in HttpSession Interface.
 ```bash
 HttpSession session = request.getSession();
 session.invalidate();
 ```
 <br>● When this invalidate method is called on the session, it removes all the objects that are bound to that session.
+
+<br>● Below are the code snippet for **servlet** 
+```bash
+HttpSession session = request.getSession();
+System.out.println(session.getId());
+if (!session.isNew()) {
+	session.invalidate();
+	session = request.getSession();
+	session.setMaxInactiveInterval(0);
+}
+//get value from data base and set in the session
+session.setAttribute("userIdInSession", rs.getInt(1));
+session.setAttribute("userEmailInSession", rs.getString(2))
+```
+<br>● Below are the code snippet for **jsp** to access session using scriptlet tag
+```bash
+<%
+	Integer useridheder = (Integer) session.getAttribute("userIdInSession");
+	String useremailheader = (String) session.getAttribute("userEmailInSession");
+%>
+```
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 
