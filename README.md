@@ -142,10 +142,13 @@ session.setAttribute("userEmailInSession", rs.getString(2))
 %>
 ```
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Session        		    | Cookies                           |
+| --------------------------------- |:---------------------------------:| 
+| A session stores the variables    | Cookies are stored on the user's  |
+| and their values within a file in | computer as a text file.          |
+| a temporary directory on the 	    |					|
+| server     			    |					|
+
+
 
 
