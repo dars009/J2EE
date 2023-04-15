@@ -86,3 +86,38 @@ For example, to access an Oracle database, you need the Oracle JDBC driver, and 
 <br>● Eclipse Enterprise for Java (EE4J) is the project that now hosts all Java Enterprise technologies. 
 <br>● With the move to EE4J, the J2EE / Java EE platform is taking a big step forward by adopting an open governance model that will allow it to be more tightly integrated with other major open-source projects.
 
+## Session
+In general, the term “Session” in computing language, refers to a period of time in which a user’s activity happens on a website. 
+<br>● Whenever you login to an application or a website, the server should validate/identify the user and track the user interactions across the application. 
+<br>● To achieve this, Java Web Server supports the servlet standard session interface, called HttpSession, to perform all the session-related activities.
+<br>● **HttpSession Interface**
+<br>● Java servlets has HttpSession(I) in javax.servlet.http package. 
+<br>● This interface provides a way to identify a user across more than one-page requests or visit a Website. 
+<br>● Servlet container uses this interface to create a session between an HTTP client and an HTTP server and stores information about that user. 
+<br>● It provides various methods to manipulate information about a session such as,
+<br>● To bind a session object with a specified user.
+<br>● To get the creation time.
+<br>● To know the last time, the user had accessed the website in that session.
+<br>● To invalidate the session etc.
+<br>● **Creating a Session**
+<br>● Once the user login to the website, we need to create a new session. To do this, we need to use getSession() method in HttpServletRequest Interface.
+<br>● 1) HttpSession getSession():
+```bash
+HttpSession session = request.getSession();
+```
+<br>● This method returns the current session associated with this request. 
+<br>● If the request does not have a session, it creates one. We can also create a session using  getSession(boolean create) method in HttpServletRequest Interface.
+<br>● 2) HttpSession getSession(boolean create):
+We can pass the boolean parameters – true or false. getSession(true):
+```bash
+HttpSession session = request.getSession(true);
+```
+<br>● 3) void invalidate():
+<br>● Once the user requests to logout, we need to destroy that session. To do this, we need to use invalidate() method in HttpSession Interface.
+```bash
+HttpSession session = request.getSession();
+session.invalidate();
+```
+<br>● When this invalidate method is called on the session, it removes all the objects that are bound to that session.
+
+
