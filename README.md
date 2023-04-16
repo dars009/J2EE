@@ -156,8 +156,230 @@ session.setAttribute("userEmailInSession", rs.getString(2))
 <br>    8) page	- Object
 <br>	9) exception - Throwable 
 
-
-
-
-
-
+<br> **1) JSP out implicit object**
+<br>● For writing any data to the buffer, JSP provides an implicit object named out. It is the object of JspWriter. In case of servlet you need to write:
+```bash
+PrintWriter out=response.getWriter();  
+```
+<br>● But in JSP, you don't need to write this code.
+<br>● Example of out implicit object
+<br>● In this example we are simply displaying date and time.
+<br>● index.jsp
+```bash
+<html>  
+	<body>  
+		<% out.print("Today is:"+java.util.Calendar.getInstance().getTime()); %>  
+	</body>  
+</html>
+```
+<br> **2) JSP request implicit object**
+The JSP request is an implicit object of type HttpServletRequest i.e. created for each jsp request by the web container. It can be used to get request information such as parameter, header information, remote address, server name, server port, content type, character encoding etc.
+It can also be used to set, get and remove attributes from the jsp request scope.
+Let's see the simple example of request implicit object where we are printing the name of the user with welcome message.
+<br>● Example of JSP request implicit object
+<br>● index.html
+```bash
+<form action="welcome.jsp">  
+	<input type="text" name="uname">  
+	<input type="submit" value="go"><br/>  
+</form>
+```
+● welcome.jsp
+```bash
+<%   
+String name=request.getParameter("uname");  
+out.print("welcome "+name);  
+%>  
+```
+<br> **3) JSP response implicit object**
+In JSP, response is an implicit object of type HttpServletResponse. The instance of HttpServletResponse is created by the web container for each jsp request.
+It can be used to add or manipulate response such as redirect response to another resource, send error etc.
+Let's see the example of response implicit object where we are redirecting the response to the Google.
+<br>● Example of response implicit object
+<br>● index.html
+```bash
+<form action="welcome.jsp">  
+	<input type="text" name="uname">  
+	<input type="submit" value="go"><br/>  
+</form>
+```
+● welcome.jsp
+```bash
+<%   
+response.sendRedirect("http://www.google.com");  
+%>  
+```
+<br> **4) JSP config implicit object**
+In JSP, config is an implicit object of type ServletConfig. This object can be used to get initialization parameter for a particular JSP page. The config object is created by the web container for each jsp page.
+Generally, it is used to get initialization parameter from the web.xml file.
+<br>● Example of config implicit object:
+<br>● index.html
+```bash
+<form action="welcome">  
+	<input type="text" name="uname">  
+	<input type="submit" value="go"><br/>  
+</form>  
+```
+● web.xml file
+```bash
+<web-app>  
+	<servlet>  
+		<servlet-name>darshit</servlet-name>  
+		<jsp-file>/welcome.jsp</jsp-file>  
+	<init-param>  
+		<param-name>dname</param-name>  
+		<param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>  
+	</init-param>  
+	</servlet>  
+		<servlet-mapping>  
+		<servlet-name>darshit</servlet-name>  
+		<url-pattern>/welcome</url-pattern>  
+	</servlet-mapping>  
+</web-app>  
+```
+● welcome.jsp
+```bash
+<%   
+out.print("Welcome "+request.getParameter("uname"));  
+String driver=config.getInitParameter("dname");  
+out.print("driver name is="+driver);  
+%>  
+```
+<br> **5) JSP application implicit object**
+In JSP, application is an implicit object of type ServletContext.
+The instance of ServletContext is created only once by the web container when application or project is deployed on the server.
+This object can be used to get initialization parameter from configuaration file (web.xml). It can also be used to get, set or remove attribute from the application scope.
+This initialization parameter can be used by all jsp pages.
+<br>● Example of application implicit object:
+<br>● index.html
+```bash
+<form action="welcome">  
+	<input type="text" name="uname">  
+	<input type="submit" value="go"><br/>  
+</form>
+```
+● web.xml file
+```bash
+<web-app>  
+	<servlet>  
+		<servlet-name>Darshit</servlet-name>  
+		<jsp-file>/welcome.jsp</jsp-file>  
+	</servlet>  
+	<servlet-mapping>  
+		<servlet-name>Darshit</servlet-name>  
+		<url-pattern>/welcome</url-pattern>  
+	</servlet-mapping>  
+	<context-param>  
+		<param-name>dname</param-name>  
+		<param-value>sun.jdbc.odbc.JdbcOdbcDriver</param-value>  
+	</context-param>  
+</web-app>  
+```
+● welcome.jsp
+```bash
+<%   
+out.print("Welcome "+request.getParameter("uname"));  
+String driver=application.getInitParameter("dname");  
+out.print("driver name is="+driver);  
+%>  
+```
+<br> **6) session implicit object**
+In JSP, session is an implicit object of type HttpSession.The Java developer can use this object to set,get or remove attribute or to get session information.
+<br>● Example of session implicit object
+<br>● index.html
+```bash
+<html>  
+	<body>  
+		<form action="welcome.jsp">  
+			<input type="text" name="uname">  
+			<input type="submit" value="go"><br/>  
+		</form>  
+	</body>  
+</html>  
+● welcome.jsp
+```bash
+<html>  
+	<body>  
+		<%   
+		String name=request.getParameter("uname");  
+		out.print("Welcome "+name);  
+		session.setAttribute("user",name);  
+		<a href="second.jsp">second jsp page</a>  
+		%>  
+	</body>  
+</html>
+```
+● second.jsp
+```bash
+<html>  
+	<body>  
+		<%   
+		String name=(String)session.getAttribute("user");  
+		out.print("Hello "+name);  
+		%>  
+	</body>  
+</html>  
+```
+<br> **7) pageContext implicit object**
+In JSP, pageContext is an implicit object of type PageContext class.The pageContext object can be used to set,get or remove attribute from one of the following scopes: page, request, session, application In JSP, page scope is the default scope.
+<br>● Example of pageContext implicit object
+<br>● index.html
+```bash
+<html>  
+	<body>  
+		<form action="welcome.jsp">  
+			<input type="text" name="uname">  
+			<input type="submit" value="go"><br/>  
+		</form>  
+	</body>  
+</html>
+```
+● welcome.jsp
+```bash
+<html>  
+	<body>  
+		<%   
+		String name=request.getParameter("uname");  
+		out.print("Welcome "+name);  
+		pageContext.setAttribute("user",name,PageContext.SESSION_SCOPE);  
+		<a href="second.jsp">second jsp page</a>  
+		%>  
+	</body>  
+</html>
+```
+● second.jsp
+```bash
+<html>  
+	<body>  
+		<%   
+		String name=(String)pageContext.getAttribute("user",PageContext.SESSION_SCOPE);  
+		out.print("Hello "+name);  
+		%>  
+	</body>  
+</html>  
+```
+<br> **8) page implicit object:**
+In JSP, page is an implicit object of type Object class.This object is assigned to the reference of auto generated servlet class. It is written as:
+```bash
+Object page=this;
+```
+● For using this object it must be cast to Servlet type.For example:
+```bash
+<% (HttpServlet)page.log("message"); %>
+```
+● Since, it is of type Object it is less used because you can use this object directly in jsp.For example:
+```bash
+<% this.log("message"); %>
+```
+<br> **9) exception implicit object**
+In JSP, exception is an implicit object of type java.lang.Throwable class. This object can be used to print the exception. But it can only be used in error pages.It is better to learn it after page directive. Let's see a simple example:
+<br>● Example of exception implicit object:
+<br>● error.jsp
+```bash
+<%@ page isErrorPage="true" %>  
+<html>  
+	<body>  
+		Sorry following exception occured:<%= exception %>  
+	</body>  
+</html>
+```
