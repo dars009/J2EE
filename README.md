@@ -142,12 +142,6 @@ session.setAttribute("userEmailInSession", rs.getString(2))
 %>
 ```
 
-| Session        		    | Cookies                           |
-| --------------------------------- |:---------------------------------:| 
-| A session stores the variables    | Cookies are stored on the user's  |
-| and their values within a file in | computer as a text file.          |
-| a temporary directory on the 	    |					|
-| server     			    |					|
 
 
 
