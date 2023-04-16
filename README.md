@@ -141,6 +141,21 @@ session.setAttribute("userEmailInSession", rs.getString(2))
 	String useremailheader = (String) session.getAttribute("userEmailInSession");
 %>
 ```
+## Implecit Objects Of JSP
+<br>● There are 9 jsp implicit objects. These objects are created by the web container that are available to all the jsp pages.
+<br>● The available implicit objects are out, request, config, session, application etc.
+<br>● A list of the 9 implicit objects is given below:
+<br>	Object  -  type 		
+<br>	1) out -  JspWriter
+<br>	2) request - HttpServletRequest
+<br>    3) response - HttpServletResponse
+<br>	4) config - ServletConfig
+<br>	5) application	- ServletContext
+<br>	6) session - HttpSession
+<br> 	7) pageContext - PageContext
+<br>    8) page	- Object
+<br>	9) exception - Throwable 
+
 
 
 
