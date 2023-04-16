@@ -12,7 +12,7 @@
 		   url="jdbc:mysql://localhost:3306/02advjava" 
 		   user="root"	
 		   password="root"/>
-	<c:set var="webappDataSource" scope="request"  />
+	<c:set var="webappDataSource" scope="request" />
 </body>
 </html>
 
